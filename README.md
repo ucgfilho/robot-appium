@@ -24,14 +24,10 @@ robot-appium/
 ├── app/
 │   └── qazandofood.apk             # APK do aplicativo (não versionado)
 ├── testes/
-│   ├── cadastro/                    # Testes de cadastro (futuro)
-│   └── login/
-│       ├── credentials.robot        # Variáveis e locators (não versionado)
-│       └── login.robot              # Suite de testes de login
-├── log.html                         # Relatório de log (gerado)
-├── output.xml                       # Saída em XML (gerado)
-├── report.html                      # Relatório HTML (gerado)
-└── README.md                        # Documentação do projeto
+    ├── cadastro/                    # Testes de cadastro (futuro)
+    └── login/
+        ├── credentials.robot        # Variáveis e locators (não versionado)
+        └── login.robot              # Suite de testes de login
 ```
 
 ---
