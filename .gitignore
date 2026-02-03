@@ -1,0 +1,97 @@
+# Robot Framework - Relatórios e Logs
+log.html
+output.xml
+report.html
+*.log
+*.xml
+*.html
+
+# Diretórios de relatórios
+logs/
+reports/
+results/
+output/
+
+# Screenshots e vídeos de testes
+screenshots/
+videos/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.webm
+
+# Arquivos temporários do Robot Framework
+selenium-screenshot-*.png
+.pabotsuitenames
+.pabotreport/
+*.pyc
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Appium
+appium.log
+appium-*.log
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# APK/IPA - Aplicativos Mobile
+*.apk
+*.ipa
+*.aab
+app/*.apk
+app/*.ipa
+
+# IDEs e Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.code-workspace
+
+# Credenciais e configurações sensíveis
+.env
+.env.*
+*.key
+*.pem
+credentials.robot
+*credentials*.robot
+secrets/
+*.secret
+config.local.*
+
+# Sistema Operacional
+Thumbs.db
+Desktop.ini
+.Trash-*
+
+# Dependências
+requirements.txt.lock
+Pipfile.lock
+poetry.lock
+package-lock.json
+yarn.lock
+
+# Arquivos de debug
+debug.log
+*.log.*
+*.out
