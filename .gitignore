@@ -43,6 +43,7 @@ venv.bak/
 dist/
 build/
 .pytest_cache/
+.venv/
 
 # Appium
 appium.log
@@ -68,13 +69,11 @@ app/*.ipa
 .DS_Store
 *.code-workspace
 
-# Credenciais e configurações sensíveis
+# Configurações sensíveis
 .env
 .env.*
 *.key
 *.pem
-credentials.robot
-*credentials*.robot
 secrets/
 *.secret
 config.local.*

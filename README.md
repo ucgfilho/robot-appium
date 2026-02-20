@@ -1,176 +1,191 @@
-# Robot Framework + Appium - Automação de Testes Mobile
+# Robot Framework + Appium — Automação de Testes Mobile
 
-Suite de testes automatizados para o aplicativo mobile **QAzando Food** utilizando Robot Framework e Appium, com execução em nuvem via BrowserStack.
-
----
-
-## 🚀 Tecnologias
-
-| Tecnologia      | Versão | Finalidade                       |
-| --------------- | ------ | -------------------------------- |
-| Robot Framework | 7.x    | Framework de automação de testes |
-| AppiumLibrary   | 2.x    | Biblioteca para testes mobile    |
-| Appium          | 2.x    | Servidor de automação mobile     |
-| Python          | 3.8+   | Linguagem de programação         |
-| BrowserStack    | Cloud  | Plataforma de testes em nuvem    |
+Suite de testes automatizados para o aplicativo **QAzando Food** utilizando Robot Framework e Appium 2, com suporte a execução local via Android Studio e em nuvem via BrowserStack.
 
 ---
 
-## Estrutura do Projeto
+## 🚀 Stack
 
-```
+| Tecnologia      | Versão  | Finalidade                         |
+|-----------------|---------|------------------------------------|
+| Robot Framework | 7.x     | Framework de automação de testes   |
+| AppiumLibrary   | 2.x     | Biblioteca para testes mobile      |
+| Appium          | 2.x     | Servidor de automação mobile       |
+| Python          | 3.8+    | Linguagem de programação           |
+| Android Studio  | Latest  | Emulador local  |
+| BrowserStack    | Cloud   | Execução em dispositivos reais     |
+
+---
+
+## 📁 Estrutura do Projeto
+
+```text
 robot-appium/
-├── .gitignore                       # Arquivos ignorados pelo Git
+├── .venv/                          # Ambiente virtual Python (não versionado)
 ├── app/
 │   └── qazandofood.apk             # APK do aplicativo (não versionado)
+├── log/
+│   ├── log.html                    # Log detalhado (gerado após execução)
+│   ├── output.xml                  # Saída XML (gerado após execução)
+│   └── report.html                 # Relatório HTML (gerado após execução)
 ├── testes/
-    ├── cadastro/                    # Testes de cadastro (futuro)
-    └── login/
-        ├── credentials.robot        # Variáveis e locators (não versionado)
-        └── login.robot              # Suite de testes de login
+│   └── login/
+│       ├── credentials.robot       # Variáveis, locators e configurações (não versionado)
+│       └── login.robot             # Suite de testes de login
+├── browserstack_driver.py          # Configuração do driver para BrowserStack
+├── .gitignore                      # Arquivos ignorados pelo Git
+├── log.html                        # Log da última execução (raiz)
+├── output.xml                      # Saída XML da última execução (raiz)
+├── report.html                     # Relatório da última execução (raiz)
+└── README.md                       # Documentação do projeto
 ```
 
 ---
 
-## Padrões de Projeto
+## 🌐 Ambientes de Execução
 
-- **Resource Files**: Separação de variáveis e locators em arquivo dedicado
-- **Keywords Customizadas**: Encapsulamento de ações reutilizáveis
-- **Page Object Pattern**: Organização de elementos e ações por tela
-- **BDD Style**: Testes escritos em linguagem natural e legível
+O projeto suporta dois ambientes configurados via a variável `RUN_ENV` no arquivo `credentials.robot`.
 
----
+### Local (Android Studio / Emulador)
 
-## Configuração BrowserStack
+- O Appium Server deve estar rodando em rede local
+- O APK é referenciado diretamente pelo caminho local
+- Ideal para desenvolvimento e depuração rápida
 
-O projeto está configurado para executar testes em dispositivos reais na nuvem através do BrowserStack.
+### BrowserStack (Nuvem)
 
-**Credenciais necessárias**:
-
-- `USERNAME`: Seu usuário do BrowserStack
-- `ACCESS_KEY`: Sua chave de acesso do BrowserStack
-- `APP_ID`: ID do aplicativo carregado no BrowserStack
-
-**Dispositivo configurado**:
-
-- **Modelo**: Google Pixel 7
-- **SO**: Android 13.0
-- **Automation**: UiAutomator2
-
-> **Nota de Segurança**: As credenciais devem ser mantidas em um arquivo `credentials.robot` que não é versionado. Crie uma cópia do arquivo de exemplo e adicione suas credenciais reais.
+- A URL de conexão aponta para `https://hub.browserstack.com/wd/hub`
+- O APK deve ser previamente enviado ao BrowserStack e o `APP_ID` atualizado em `credentials.robot`
+- As credenciais são carregadas via variáveis de ambiente do sistema
+- Permite execução em dispositivos reais sem infraestrutura local
 
 ---
 
-## Funcionalidades
+## 🔐 Configuração de Variáveis de Ambiente (Windows)
 
-### Login
+As credenciais do BrowserStack **nunca devem ser commitadas**. Configure-as como variáveis de ambiente no Windows:
 
-| Cenário           | Tag               | Status |
-| ----------------- | ----------------- | ------ |
-| Login com sucesso | login-com-sucesso | ✅     |
-| Login sem sucesso | login-sem-sucesso | ✅     |
+```bash
+# Abrir PowerShell como Administrador e executar:
+[System.Environment]::SetEnvironmentVariable("BROWSERSTACK_USERNAME", "seu_usuario", "User")
+[System.Environment]::SetEnvironmentVariable("BROWSERSTACK_ACCESS_KEY", "sua_access_key", "User")
+```
 
-### Cadastro
+Ou pela interface gráfica:
 
-| Cenário            | Status |
-| ------------------ | ------ |
-| Em desenvolvimento | 🚧     |
+1. Pesquise **"Variáveis de Ambiente"** no menu Iniciar
+2. Em **Variáveis do usuário**, clique em **Novo**
+3. Adicione `BROWSERSTACK_USERNAME` e `BROWSERSTACK_ACCESS_KEY` com seus respectivos valores
+
+> **Reinicie o terminal** após definir as variáveis para que sejam reconhecidas.
 
 ---
 
-## Instalação
+## ⚙️ Instalação
 
 ### Pré-requisitos
 
-- Python 3.8 ou superior
-- pip (gerenciador de pacotes Python)
+- Python 3.8 ou superior instalado
+- Android Studio com emulador configurado (para execução local)
+- Conta ativa no BrowserStack (para execução em nuvem)
 
-### Instalação das dependências
+### Passo a Passo
 
 ```bash
-git clone https://github.com/SEU_USUARIO/robot-appium.git
+# 1. Clone o repositório
+git clone https://github.com/ucgfilho/robot-appium.git
 cd robot-appium
+
+# 2. Crie e ative o ambiente virtual
+python -m venv .venv
+.venv\Scripts\activate
+
+# 3. Instale as dependências
 pip install robotframework
 pip install robotframework-appiumlibrary
+
+# 4. Crie o arquivo de credenciais
+copy testes\login\credentials.robot.example testes\login\credentials.robot
+# Edite credentials.robot com seus dados reais
 ```
+
+> O arquivo `credentials.robot` está listado no `.gitignore` e **não é versionado**.
 
 ---
 
-## Execução
+## ▶️ Execução dos Testes
+
+### Execução Local (Emulador Android Studio)
+
+Certifique-se de que o Appium Server está rodando (`appium`) e o emulador está iniciado.
 
 ```bash
-# Executar todos os testes
-robot testes/
+# Defina o ambiente como LOCAL no credentials.robot:
+# ${RUN_ENV}    LOCAL
 
-# Executar testes de login
-robot testes/login/
-
-# Executar teste específico
+# Executar todos os testes de login
 robot testes/login/login.robot
 
 # Executar por tag
 robot --include login-com-sucesso testes/login/login.robot
+robot --include login-sem-sucesso testes/login/login.robot
 
-# Executar com relatório customizado
-robot --outputdir results --name "Login Tests" testes/login/
+# Executar com relatório em pasta customizada
+robot --outputdir results testes/login/login.robot
+```
+
+### Execução via BrowserStack (Nuvem)
+
+```bash
+# Defina o ambiente como BSTACK no credentials.robot:
+# ${RUN_ENV}    BSTACK
+
+# Certifique-se de que as variáveis de ambiente estão configuradas:
+# BROWSERSTACK_USERNAME e BROWSERSTACK_ACCESS_KEY
+
+# Executar todos os testes
+robot testes/login/login.robot
+
+# Executar por tag
+robot --include login-com-sucesso testes/login/login.robot
 ```
 
 ---
 
-## Relatórios
+## 📊 Relatórios
 
-Após a execução, são gerados automaticamente:
+Após cada execução são gerados automaticamente na raiz do projeto:
 
-- **log.html**: Log detalhado da execução com expandir/colapsar
-- **report.html**: Relatório resumido com estatísticas
-- **output.xml**: Saída em formato XML para integração com outras ferramentas
+| Arquivo       | Descrição                                              |
+|---------------|--------------------------------------------------------|
+| `log.html`    | Log detalhado com cada keyword executada               |
+| `report.html` | Relatório resumido com estatísticas de pass/fail       |
+| `output.xml`  | Saída em XML para integração com CI/CD e outras ferramentas |
 
----
+Para gerar relatórios em pasta separada:
 
-## Locators Utilizados
-
-### Tela de Login
-
-| Elemento            | Estratégia       | Valor                                                                |
-| ------------------- | ---------------- | -------------------------------------------------------------------- |
-| Texto "Falta pouco" | XPath            | `//android.widget.TextView[@text="Falta pouco pra matar sua fome!"]` |
-| Campo E-mail        | Accessibility ID | `email`                                                              |
-| Campo Senha         | Accessibility ID | `password`                                                           |
-| Botão Login         | Accessibility ID | `login-button`                                                       |
-| Mensagem de Erro    | XPath            | `//android.widget.TextView[@text="Erro ao realizar login"]`          |
-
-### Tela Home
-
-| Elemento       | Estratégia       | Valor            |
-| -------------- | ---------------- | ---------------- |
-| Botão Endereço | Accessibility ID | `address-button` |
+```bash
+robot --outputdir results --name "Login Suite" testes/login/login.robot
+```
 
 ---
 
-## Boas Práticas Implementadas
+## ✅ Boas Práticas Aplicadas
 
-- ✅ Separação de credenciais e dados sensíveis
-- ✅ Uso de timeouts explícitos para sincronização
-- ✅ Captura de screenshots ao final de cada teste
-- ✅ Fechamento adequado da aplicação após cada teste
-- ✅ Tags para execução seletiva de testes
-- ✅ Keywords reutilizáveis e descritivas
-- ✅ Aguardar visibilidade de elementos antes de interagir
-
----
-
-## Próximos Passos
-
-- [ ] Implementar testes de cadastro
-- [ ] Adicionar suporte a múltiplos dispositivos/resoluções
-- [ ] Configurar CI/CD com GitHub Actions
-- [ ] Adicionar testes de fluxos completos (E2E)
-- [ ] Implementar data-driven testing com arquivos CSV/JSON
-- [ ] Adicionar relatórios customizados com Robot Framework Metrics
+- **Separação de responsabilidades**: Credenciais, locators e variáveis isolados em `credentials.robot`
+- **Variáveis de ambiente**: Credenciais sensíveis carregadas via `Get Environment Variable`, nunca hardcoded
+- **Suporte multi-ambiente**: Alternância entre Local e BrowserStack via variável `RUN_ENV`
+- **Page Object Pattern**: Elementos organizados por tela no arquivo de resources
+- **Keywords reutilizáveis**: Ações encapsuladas em keywords descritivas
+- **Timeouts explícitos**: `Wait Until Element Is Visible` para sincronização confiável
+- **Captura de evidências**: `Capture Page Screenshot` ao final de cada cenário
+- **Teardown adequado**: `Close Application` garantindo limpeza de sessão
+- **Tags**: Execução seletiva por `--include` / `--exclude`
+- **BDD Style**: Cenários escritos em linguagem natural e legível
 
 ---
 
-## Autor
+## 👤 Autor
 
 **Ubirajara Filho**
 
@@ -179,6 +194,6 @@ Após a execução, são gerados automaticamente:
 
 ---
 
-## Licença
+## 📄 Licença
 
-Este projeto está sob a licença MIT.
+Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
