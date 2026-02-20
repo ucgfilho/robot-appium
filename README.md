@@ -6,14 +6,14 @@ Suite de testes automatizados para o aplicativo **QAzando Food** utilizando Robo
 
 ## 🚀 Stack
 
-| Tecnologia      | Versão  | Finalidade                         |
-|-----------------|---------|------------------------------------|
-| Robot Framework | 7.x     | Framework de automação de testes   |
-| AppiumLibrary   | 2.x     | Biblioteca para testes mobile      |
-| Appium          | 2.x     | Servidor de automação mobile       |
-| Python          | 3.8+    | Linguagem de programação           |
-| Android Studio  | Latest  | Emulador local  |
-| BrowserStack    | Cloud   | Execução em dispositivos reais     |
+| Tecnologia      | Versão | Finalidade                       |
+|-----------------|--------|----------------------------------|
+| Robot Framework | 7.x    | Framework de automação de testes |
+| AppiumLibrary   | 2.x    | Biblioteca para testes mobile    |
+| Appium          | 2.x    | Servidor de automação mobile     |
+| Python          | 3.8+   | Linguagem de programação         |
+| Android Studio  | Latest | Emulador local                   |
+| BrowserStack    | Cloud  | Execução em dispositivos reais   |
 
 ---
 
@@ -156,10 +156,10 @@ robot --include login-com-sucesso testes/login/login.robot
 
 Após cada execução são gerados automaticamente na raiz do projeto:
 
-| Arquivo       | Descrição                                              |
-|---------------|--------------------------------------------------------|
-| `log.html`    | Log detalhado com cada keyword executada               |
-| `report.html` | Relatório resumido com estatísticas de pass/fail       |
+| Arquivo       | Descrição                                                   |
+|---------------|-------------------------------------------------------------|
+| `log.html`    | Log detalhado com cada keyword executada                    |
+| `report.html` | Relatório resumido com estatísticas de pass/fail            |
 | `output.xml`  | Saída em XML para integração com CI/CD e outras ferramentas |
 
 Para gerar relatórios em pasta separada:
@@ -196,4 +196,4 @@ robot --outputdir results --name "Login Suite" testes/login/login.robot
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está sob a licença MIT.
