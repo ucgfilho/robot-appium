@@ -1,6 +1,6 @@
 # Robot Framework + Appium — Automação de Testes Mobile
 
-Suite de testes automatizados para o aplicativo **qafood** utilizando Robot Framework e Appium 2, com suporte a execução local via Android Studio e em nuvem via BrowserStack.
+Suite de testes automatizados para o aplicativo **qaFood** utilizando Robot Framework e Appium 2, com suporte a execução local via Android Studio e em nuvem via BrowserStack.
 
 ---
 
@@ -23,7 +23,7 @@ Suite de testes automatizados para o aplicativo **qafood** utilizando Robot Fram
 robot-appium/
 ├── .venv/                      # Ambiente virtual Python (não versionado)
 ├── app/
-│   └── qafood.apk              # APK do aplicativo (não versionado)
+│   └── qaFood.apk              # APK do aplicativo (não versionado)
 ├── results/
 │   ├── log.html                # Log detalhado (gerado após execução)
 │   ├── output.xml              # Saída XML (gerado após execução)
