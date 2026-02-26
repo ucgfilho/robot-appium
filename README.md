@@ -1,6 +1,6 @@
 # Robot Framework + Appium — Automação de Testes Mobile
 
-Suite de testes automatizados para o aplicativo **QAzando Food** utilizando Robot Framework e Appium 2, com suporte a execução local via Android Studio e em nuvem via BrowserStack.
+Suite de testes automatizados para o aplicativo **qafood** utilizando Robot Framework e Appium 2, com suporte a execução local via Android Studio e em nuvem via BrowserStack.
 
 ---
 
@@ -23,7 +23,7 @@ Suite de testes automatizados para o aplicativo **QAzando Food** utilizando Robo
 robot-appium/
 ├── .venv/                          # Ambiente virtual Python (não versionado)
 ├── app/
-│   └── qazandofood.apk             # APK do aplicativo (não versionado)
+│   └── qafood.apk             # APK do aplicativo (não versionado)
 ├── log/
 │   ├── log.html                    # Log detalhado (gerado após execução)
 │   ├── output.xml                  # Saída XML (gerado após execução)
@@ -105,7 +105,7 @@ pip install robotframework
 pip install robotframework-appiumlibrary
 
 # 4. Crie o arquivo de credenciais
-copy testes\login\credentials.robot.example testes\login\credentials.robot
+copy tests\login\credentials.robot.example tests\login\credentials.robot
 # Edite credentials.robot com seus dados reais
 ```
 
@@ -123,15 +123,15 @@ Certifique-se de que o Appium Server está rodando (`appium`) e o emulador está
 # Defina o ambiente como LOCAL no credentials.robot:
 # ${RUN_ENV}    LOCAL
 
-# Executar todos os testes de login
-robot testes/login/login.robot
+# Executar todos os tests de login
+robot tests/login/login.robot
 
 # Executar por tag
-robot --include login-com-sucesso testes/login/login.robot
-robot --include login-sem-sucesso testes/login/login.robot
+robot --include login-com-sucesso tests/login/login.robot
+robot --include login-sem-sucesso tests/login/login.robot
 
 # Executar com relatório em pasta customizada
-robot --outputdir results testes/login/login.robot
+robot --outputdir results tests/login/login.robot
 ```
 
 ### Execução via BrowserStack (Nuvem)
@@ -143,11 +143,11 @@ robot --outputdir results testes/login/login.robot
 # Certifique-se de que as variáveis de ambiente estão configuradas:
 # BROWSERSTACK_USERNAME e BROWSERSTACK_ACCESS_KEY
 
-# Executar todos os testes
-robot testes/login/login.robot
+# Executar todos os tests
+robot tests/login/login.robot
 
 # Executar por tag
-robot --include login-com-sucesso testes/login/login.robot
+robot --include login-com-sucesso tests/login/login.robot
 ```
 
 ---
@@ -165,7 +165,7 @@ Após cada execução são gerados automaticamente na raiz do projeto:
 Para gerar relatórios em pasta separada:
 
 ```bash
-robot --outputdir results --name "Login Suite" testes/login/login.robot
+robot --outputdir results --name "Login Suite" tests/login/login.robot
 ```
 
 ---

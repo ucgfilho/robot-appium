@@ -12,7 +12,7 @@ reports/
 results/
 output/
 
-# Screenshots e vídeos de testes
+# Screenshots e vídeos de tests
 screenshots/
 videos/
 *.png
